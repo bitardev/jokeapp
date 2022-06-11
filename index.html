@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke SPA</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="main-wrapper">
+            <div class="filter radius">
+                <div class="col">
+                    <h3>Select the categories to be excluded (multiple-choice)</h3>
+                    <select class="exclude-list" v-model="selected" multiple>
+                        <option>nsfw</option>
+                        <option>religious</option>
+                        <option>political</option>
+                        <option>racist</option>
+                        <option>sexist</option>
+                        <option>explicit</option>
+                    </select>
+                    <!-- <div>Exclude {{exclude}}</div> -->
+                    <br>
+                    <br>
+                    <button class="full-width" @click="filterJokes">Filter</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="joke-wrapper">
+                    <h1>Random Joke</h1>
+                    <p>{{joke}}</p>
+                    <div class="submit-wrapper">
+                        <select name="rank" id="" v-model="rank">
+                            <option v-for="(nb, index) in 100" :key="index" :value="nb">{{nb}}</option>
+                        </select>
+                        <button @click="submitRank">Submit rank</button>
+                    </div>
+                </div>
+                <div class="rankinglist radius">
+                    <h2>Top 10 jokes</h2>
+                    <div class="joke-item" v-for="(item,index) in rankingList.slice(0, 10)" :key="'index_'+index">
+                        <span>{{item.joke}}</span> (<strong>{{item.ranking}}</strong>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3.0.5"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
